@@ -1,2 +1,2 @@
-imple table viewer of the MediaStore
+Simple table viewer of the MediaStore
 
