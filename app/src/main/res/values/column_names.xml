@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="_id">Unique ID</string>
+    <string name="_data">File location</string>
+    <string name="album">Album     </string>
+    <string name="artist">Artist   </string>
+
+</resources>

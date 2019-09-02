@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">MediastoreView</string>
+
+    <string name="nav_main_audio">Audio</string>
+    <string name="nav_main_video">Video</string>
+    <string name="nav_main_image">Images</string>
+    <string name="nav_main_download">Downloads</string>
+    <string name="nav_main_files">Files</string>
+
+    <string name="nav_audio_playlists">Playlists</string>
+    <string name="nav_audio_albums">Albums</string>
+    <string name="nav_audio_artists">Artists</string>
+    <string name="nav_audio_genre">Genres</string>
+    <string name="nav_audio_media">Media Items</string>
+
+    <string name="nav_video_blabla">Video stuff</string>
+
+    <string name="nav_files_files">Files</string>
+
+</resources>
