@@ -1,5 +1,14 @@
 package org.spoofer.mediastoreview;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.text.TextUtils;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,19 +17,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.os.Build;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import android.text.TextUtils;
-import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -34,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
 
+    private ViewPager tableViewPager;
     private TableViewAdaper tableViewAdaper;
-    
+
 
     private final NavigationView.OnNavigationItemSelectedListener navigationListener
             = new NavigationView.OnNavigationItemSelectedListener() {
@@ -68,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                     return false;
             }
             drawerLayout.closeDrawers();
+            tableViewPager.requestLayout();
             return true;
         }
     };
@@ -95,9 +94,10 @@ public class MainActivity extends AppCompatActivity {
         navView.setNavigationItemSelectedListener(navigationListener);
 
         tableViewAdaper = new TableViewAdaper(getSupportFragmentManager());
-        
-        ViewPager viewPager = findViewById(R.id.viewpager);
-        viewPager.setAdapter(tableViewAdaper);
+
+        tableViewPager = findViewById(R.id.viewpager);
+        if (null != tableViewPager)
+            tableViewPager.setAdapter(tableViewAdaper);
     }
 
     @Override
@@ -118,6 +118,15 @@ public class MainActivity extends AppCompatActivity {
 
         if (!TextUtils.isEmpty(groupName))
             tableViewAdaper.setMediaGroup(groupName);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (drawerToggle.onOptionsItemSelected(item))
+            return true;
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -158,7 +167,8 @@ public class MainActivity extends AppCompatActivity {
 
         public void setMediaGroup(MediaGroup mediaGroup) {
             this.mediaGroup = mediaGroup;
-            notifyDataSetChanged();
+
+            tableViewPager.setAdapter(tableViewAdaper);
         }
 
         public void setMediaGroup(String groupName) {

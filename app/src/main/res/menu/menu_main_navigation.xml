@@ -2,35 +2,35 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/menu_nav_audio" 
-        android:title="@string/nav_main_audio"
-        android:icon="@drawable/ic_audio"
-        app:showAsAction="ifRoom"
-        />
+    <group>
+        <item
+            android:id="@+id/menu_nav_audio"
+            android:icon="@drawable/ic_audio"
+            android:title="@string/nav_main_audio"
+            app:showAsAction="ifRoom" />
 
-    <item
-        android:id="@+id/menu_nav_images"
-        android:title="@string/nav_main_video"
-        android:icon="@drawable/ic_images"
-        app:showAsAction="ifRoom"
-        />
+        <item
+            android:id="@+id/menu_nav_images"
+            android:icon="@drawable/ic_images"
+            android:title="@string/nav_main_video"
+            app:showAsAction="ifRoom" />
 
-    <item
-        android:id="@+id/menu_nav_video"
-        android:title="@string/nav_main_video"
-        android:icon="@drawable/ic_video"
-        app:showAsAction="ifRoom"
-        />
+        <item
+            android:id="@+id/menu_nav_video"
+            android:icon="@drawable/ic_video"
+            android:title="@string/nav_main_video"
+            app:showAsAction="ifRoom" />
 
-    <item android:id="@+id/menu_nav_download"
-        android:title="@string/nav_main_download"
-        android:icon="@drawable/ic_download"
-        app:showAsAction="ifRoom"
-        />
+        <item
+            android:id="@+id/menu_nav_download"
+            android:icon="@drawable/ic_download"
+            android:title="@string/nav_main_download"
+            app:showAsAction="ifRoom" />
 
-    <item android:id="@+id/menu_nav_files"
-        android:title="@string/nav_main_files"
-        android:icon="@drawable/ic_files"
-        app:showAsAction="ifRoom"
-        />
+        <item
+            android:id="@+id/menu_nav_files"
+            android:icon="@drawable/ic_files"
+            android:title="@string/nav_main_files"
+            app:showAsAction="ifRoom" />
+    </group>
 </menu>

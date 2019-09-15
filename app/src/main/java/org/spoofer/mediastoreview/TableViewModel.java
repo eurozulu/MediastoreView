@@ -61,6 +61,30 @@ public class TableViewModel extends ViewModel {
         return rows;
     }
 
+    public List<String> getRow(int id) {
+        List<List<String>> rows = this.rows.getValue();
+        if (null == rows)
+            return null;
+
+        List<String> foundRow = null;
+
+        for (List<String> row : rows) {
+            if (row.size() > 0) {
+                try {
+                    int _id = Integer.parseInt(row.get(0));
+                    if (_id == id) {
+                        foundRow = row;
+                        break;
+                    }
+                } catch (NumberFormatException e) {
+
+                }
+            }
+        }
+        return foundRow;
+    }
+
+
     public LiveData<List<String>> getTitles() {
         return titles;
     }

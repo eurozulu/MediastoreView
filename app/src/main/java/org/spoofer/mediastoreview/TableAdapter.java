@@ -20,7 +20,10 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
     private final List<Title> titles = new ArrayList<>();
     private final List<List<String>> rows = new ArrayList<>();
     private TableAdapter.ViewHolder titleViewHolder;
-    private OnClickTableListener onClickTableListener;
+
+    private OnClickTitleListener onClickTitleListener;
+    private OnLongClickTitleListener onLongClickTitleListener;
+    private OnClickRowListener onClickRowListener;
 
     private final LayoutInflater layoutInflater;
 
@@ -28,8 +31,16 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
         this.layoutInflater = LayoutInflater.from(context);
     }
 
-    public void setOnClickTableListener(OnClickTableListener onClickTableListener) {
-        this.onClickTableListener = onClickTableListener;
+    public void setOnClickTitleListener(OnClickTitleListener onClickTitleListener) {
+        this.onClickTitleListener = onClickTitleListener;
+    }
+
+    public void setOnLongClickTitleListener(OnLongClickTitleListener onLongClickTitleListener) {
+        this.onLongClickTitleListener = onLongClickTitleListener;
+    }
+
+    public void setOnClickRowListener(OnClickRowListener onClickRowListener) {
+        this.onClickRowListener = onClickRowListener;
     }
 
     public List<List<String>> getRows() {
@@ -84,6 +95,27 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
         return rows.size();
     }
 
+
+    public int getColumnWidth(int position) {
+        ViewGroup parentView = (ViewGroup) titleViewHolder.itemView;
+
+        int width = position < parentView.getChildCount() ?
+                parentView.getChildAt(position).getMeasuredWidth() : -1;
+        return Math.max(width, DEFAULT_CELL_WIDTH);
+    }
+
+    public void setColumnWidth(int width, int position) {
+        ViewGroup parentView = (ViewGroup) titleViewHolder.itemView;
+
+        if (position < 0 || position >= parentView.getChildCount())
+            return;
+
+        int cellWidth = Math.max(DEFAULT_CELL_WIDTH, width);
+        parentView.getChildAt(position).setMinimumWidth(cellWidth);
+        parentView.requestLayout();
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final ViewGroup rowParent;
 
@@ -110,6 +142,15 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
             TextView tv = (TextView) layoutInflater.
                     inflate(R.layout.table_cell, parent, false);
             tv.setWidth(getColumnWidth(index));
+            tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    CharSequence id = ((TextView)((ViewGroup) tv.getParent()).getChildAt(0)).getText();
+                    if (null != onClickRowListener) {
+                        onClickRowListener.onRowClick(Integer.parseInt(id.toString()), index, tv.getText());
+                    }
+                }
+            });
             return tv;
         }
 
@@ -125,18 +166,27 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
         }
 
         @Override
-        protected TextView makeCell(ViewGroup parent, int index) {
+        protected TextView makeCell(ViewGroup parent, final int index) {
             TextView tv = (TextView) layoutInflater.
                     inflate(R.layout.title_cell, parent, false);
             tv.setMinWidth(DEFAULT_CELL_WIDTH);
-            tv.setTag(index);
             tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (null != onClickTableListener) {
-                        int position = (int) view.getTag();
-                        onClickTableListener.onClick(position, titles.get(position).title);
+                    if (null != onClickTitleListener) {
+                        onClickTitleListener.onTitleClick(index, titles.get(index).title);
                     }
+                }
+            });
+
+            tv.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    if (null != onLongClickTitleListener && view instanceof TextView) {
+                        onLongClickTitleListener.onTitleLongClick((TextView) view, index, titles.get(index).title);
+                        return true;
+                    }
+                    return false;
                 }
             });
             return tv;
@@ -151,16 +201,15 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
             this.title = title;
         }
     }
-
-    private int getColumnWidth(int position) {
-        ViewGroup parentView = (ViewGroup) titleViewHolder.itemView;
-
-        int width = position < parentView.getChildCount() ?
-                parentView.getChildAt(position).getMeasuredWidth() : -1;
-        return Math.max(width, DEFAULT_CELL_WIDTH);
+    public interface OnClickTitleListener {
+        void onTitleClick(int column, String columnName);
     }
 
-    public interface OnClickTableListener {
-        void onClick(int column, String columnName);
+    public interface OnLongClickTitleListener {
+        void onTitleLongClick(TextView view, int column, String columnName);
+    }
+
+    public interface OnClickRowListener {
+        void onRowClick(int rowId, int column, CharSequence value);
     }
 }
