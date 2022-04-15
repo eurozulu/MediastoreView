@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import androidx.annotation.MenuRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -119,11 +121,22 @@ public class DataGridFragment extends Fragment {
         if (cursor == null) {
             return false;
         }
+        setAppBarTitle(String.format("%s  -  %s", groupName, sourceName));
+
         Log.d(LOG, String.format("query complete with: %d results", cursor.getCount()));
         dataGridViewModel.setTitles(Arrays.asList(cursor.getColumnNames()));
         dataGridViewModel.setRows(DataRow.parseDataRows(cursor));
         Log.d(LOG, "updateSource - complete");
         return true;
+    }
+
+    private void setAppBarTitle(String title) {
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle(title);
+        }
+
+
     }
 
     private void setupBottomNavigator() {
