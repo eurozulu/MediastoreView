@@ -9,7 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import org.spoofer.mediastoreView.R;
 import org.spoofer.mediastoreView.model.DataRow;
 import org.spoofer.mediastoreView.model.TitleColumns;
@@ -39,7 +38,6 @@ public class DataGridAdapter extends RecyclerView.Adapter<DataGridViewHolder> {
         int colCount = titleColumns.getColumnCount();
         for (int i = 0; i < colCount; i++) {
             TextView cell = (TextView) inflater.inflate(R.layout.cell_data, root, false);
-            setLayoutWidth(cell, titleColumns.getColumnWidth(i));
             root.addView(cell);
         }
         return new DataGridViewHolder(root);
@@ -47,6 +45,11 @@ public class DataGridAdapter extends RecyclerView.Adapter<DataGridViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull DataGridViewHolder holder, int position) {
+        ViewGroup row = (ViewGroup) holder.itemView;
+        // set column widths
+        for (int i = 0; i < row.getChildCount(); i++) {
+            setLayoutWidth(row.getChildAt(i), titleColumns.getColumnWidth(i));
+        }
         holder.setRowData(rows.get(position));
     }
 
@@ -82,9 +85,4 @@ public class DataGridAdapter extends RecyclerView.Adapter<DataGridViewHolder> {
         params.width = width;
         v.setLayoutParams(params);
     }
-
-    private void setColumnWidths(ViewGroup parent) {
-
-    }
-
 }

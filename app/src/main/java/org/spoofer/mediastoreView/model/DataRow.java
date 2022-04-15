@@ -10,7 +10,7 @@ import java.util.List;
 public class DataRow extends AbstractList<String> {
     private static final String LOG = DataRow.class.getName();
 
-    public static final String NULL_TOKEN = "NULL";
+    public static final String NULL_TOKEN = "-";
 
     private static final int MAX_ROWS = 30;
     private static final int MAX_COLS = 25;
