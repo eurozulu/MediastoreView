@@ -1,20 +1,25 @@
 <resources>
-    <string name="app_name">MediastoreView</string>
+    <string name="app_name">StorerExplorer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
 
-    <string name="nav_main_audio">Audio</string>
-    <string name="nav_main_video">Video</string>
-    <string name="nav_main_image">Images</string>
-    <string name="nav_main_download">Downloads</string>
-    <string name="nav_main_files">Files</string>
+    <string name="menu_all_files">All Files</string>
+    <string name="menu_downloads">Downloads</string>
+    <string name="menu_audio">Audio</string>
+    <string name="menu_video">Video</string>
+    <string name="menu_images">Images</string>
 
-    <string name="nav_audio_playlists">Playlists</string>
-    <string name="nav_audio_albums">Albums</string>
-    <string name="nav_audio_artists">Artists</string>
-    <string name="nav_audio_genre">Genres</string>
-    <string name="nav_audio_media">Media Items</string>
+    <string name="menu_source_media">Media</string>
+    <string name="menu_source_thumbnails">Thumbnails</string>
+    <string name="menu_source_files">Files</string>
+    <string name="menu_source_albums">Albums</string>
+    <string name="menu_source_artists">Artists</string>
+    <string name="menu_source_playlists">Playlists</string>
+    <string name="menu_source_genres">Genres</string>
 
-    <string name="nav_video_blabla">Video stuff</string>
-
-    <string name="nav_files_files">Files</string>
-
+    <string name="permission_failed">Failed to get permission to read MediaStore</string>
 </resources>
