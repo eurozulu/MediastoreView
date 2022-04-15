@@ -1,4 +1,4 @@
-package org.spoofer.storerexplorer.query;
+package org.spoofer.mediastoreView.query;
 
 import android.content.ContentValues;
 import android.content.Context;

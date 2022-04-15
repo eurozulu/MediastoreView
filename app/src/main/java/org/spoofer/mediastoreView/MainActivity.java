@@ -1,10 +1,9 @@
-package org.spoofer.storerexplorer;
+package org.spoofer.mediastoreView;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -18,7 +17,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
-import org.spoofer.storerexplorer.databinding.ActivityMainBinding;
+import org.spoofer.mediastoreView.databinding.ActivityMainBinding;
 
 import java.util.List;
 import java.util.Map;

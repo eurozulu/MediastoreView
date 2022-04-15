@@ -1,6 +1,5 @@
-package org.spoofer.storerexplorer.ui.datagrid;
+package org.spoofer.mediastoreView.ui.datagrid;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;

@@ -1,15 +1,11 @@
-package org.spoofer.storerexplorer.model;
+package org.spoofer.mediastoreView.model;
 
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.spoofer.storerexplorer.R;
+import org.spoofer.mediastoreView.R;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

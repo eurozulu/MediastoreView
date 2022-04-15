@@ -1,4 +1,4 @@
-package org.spoofer.storerexplorer.model;
+package org.spoofer.mediastoreView.model;
 
 import android.net.Uri;
 

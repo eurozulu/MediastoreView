@@ -1,9 +1,7 @@
-package org.spoofer.storerexplorer.ui.datagrid;
+package org.spoofer.mediastoreView.ui.datagrid;
 
 import android.database.Cursor;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,14 +18,14 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.spoofer.storerexplorer.R;
-import org.spoofer.storerexplorer.databinding.FragmentDatagridBinding;
-import org.spoofer.storerexplorer.model.DataRow;
-import org.spoofer.storerexplorer.model.Source;
-import org.spoofer.storerexplorer.model.Sources;
-import org.spoofer.storerexplorer.model.TitleColumns;
-import org.spoofer.storerexplorer.query.Query;
-import org.spoofer.storerexplorer.query.SelectQuery;
+import org.spoofer.mediastoreView.R;
+import org.spoofer.mediastoreView.databinding.FragmentDatagridBinding;
+import org.spoofer.mediastoreView.model.DataRow;
+import org.spoofer.mediastoreView.model.Source;
+import org.spoofer.mediastoreView.model.Sources;
+import org.spoofer.mediastoreView.model.TitleColumns;
+import org.spoofer.mediastoreView.query.Query;
+import org.spoofer.mediastoreView.query.SelectQuery;
 
 import java.util.Arrays;
 import java.util.List;

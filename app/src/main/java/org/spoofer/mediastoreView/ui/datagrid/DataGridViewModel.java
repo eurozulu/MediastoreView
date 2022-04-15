@@ -1,10 +1,10 @@
-package org.spoofer.storerexplorer.ui.datagrid;
+package org.spoofer.mediastoreView.ui.datagrid;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import org.spoofer.storerexplorer.model.DataRow;
+import org.spoofer.mediastoreView.model.DataRow;
 
 import java.util.List;
 

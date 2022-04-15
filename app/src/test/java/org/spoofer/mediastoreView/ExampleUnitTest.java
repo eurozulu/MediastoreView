@@ -1,4 +1,4 @@
-package org.spoofer.storerexplorer;
+package org.spoofer.mediastoreView;
 
 import org.junit.Test;
 
