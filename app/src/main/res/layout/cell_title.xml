@@ -7,4 +7,4 @@
     android:layout_marginHorizontal="1dp"
     android:paddingHorizontal="5dp"
     android:paddingVertical="3dp"
-    android:theme="@style/Theme.StorerExplorer.GridTitle" />
+    android:theme="@style/Theme.MediastoreView.GridTitle" />
