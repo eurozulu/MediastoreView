@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_all_files">
+
+    <fragment
+        android:id="@+id/nav_all_files"
+        android:name="org.spoofer.storerexplorer.ui.datagrid.DataGridFragment"
+        android:label="@string/menu_all_files"
+        tools:layout="@layout/fragment_datagrid">
+        <argument
+            android:name="group_name"
+            android:defaultValue="All Files"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_images"
+        android:name="org.spoofer.storerexplorer.ui.datagrid.DataGridFragment"
+        android:label="@string/menu_images"
+        tools:layout="@layout/fragment_datagrid">
+        <argument
+            android:name="group_name"
+            android:defaultValue="All Files"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_downloads"
+        android:name="org.spoofer.storerexplorer.ui.datagrid.DataGridFragment"
+        android:label="@string/menu_downloads"
+        tools:layout="@layout/fragment_datagrid">
+        <argument
+            android:name="group_name"
+            android:defaultValue="Downloads"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_audio"
+        android:name="org.spoofer.storerexplorer.ui.datagrid.DataGridFragment"
+        android:label="@string/menu_audio"
+        tools:layout="@layout/fragment_datagrid">
+        <argument
+            android:name="group_name"
+            android:defaultValue="Audio"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_video"
+        android:name="org.spoofer.storerexplorer.ui.datagrid.DataGridFragment"
+        android:label="@string/menu_video"
+        tools:layout="@layout/fragment_datagrid">
+        <argument
+            android:name="group_name"
+            android:defaultValue="Video"
+            app:argType="string" />
+    </fragment>
+
+
+</navigation>
