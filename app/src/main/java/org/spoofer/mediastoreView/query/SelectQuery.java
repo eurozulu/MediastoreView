@@ -26,6 +26,11 @@ public class SelectQuery implements Query {
         return fields;
     }
 
+    public void setField(List<String> fields) {
+        this.fields.clear();
+        this.fields.addAll(fields);
+    }
+
     public String getSoryBy() {
         return soryBy;
     }
@@ -49,12 +54,12 @@ public class SelectQuery implements Query {
         return whereArgs;
     }
 
-    public void setWhere(String where) {
-        this.where = where;
-    }
-
     public void setWhereArgs(String[] whereArgs) {
         this.whereArgs = whereArgs;
+    }
+
+    public void setWhere(String where) {
+        this.where = where;
     }
 
     @NonNull

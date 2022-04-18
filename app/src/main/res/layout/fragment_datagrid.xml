@@ -22,9 +22,13 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <include
-                android:id="@+id/layout_datagrid_titles"
-                layout="@layout/cell_row" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_grid_titles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/light_grey"
+                tools:itemCount="5"
+                tools:listitem="@layout/titles_list_item" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list_grid_cells"

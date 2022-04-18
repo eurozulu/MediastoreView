@@ -20,6 +20,7 @@ public class UpdateQuery implements Query {
     public Uri getSource() {
         return source;
     }
+
     public void setSource(Uri source) {
         this.source = source;
     }
@@ -34,19 +35,19 @@ public class UpdateQuery implements Query {
         return whereArgs;
     }
 
-    public void setWhere(String where) {
-        this.where = where;
-    }
-
     public void setWhereArgs(String[] whereArgs) {
         this.whereArgs = whereArgs;
     }
 
+    public void setWhere(String where) {
+        this.where = where;
+    }
+
     @Override
     public Cursor execute(Context context) {
-         context.getContentResolver().update(getSource(), getValues(),
+        context.getContentResolver().update(getSource(), getValues(),
                 getWhereClause(), getWhereArgs());
-         return null;
+        return null;
     }
 
 }

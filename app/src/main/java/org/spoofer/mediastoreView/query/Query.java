@@ -5,14 +5,6 @@ import android.database.Cursor;
 import android.net.Uri;
 
 public interface Query {
-    Uri getSource();
-
-    String getWhereClause();
-
-    String[] getWhereArgs();
-
-    Cursor execute(Context context);
-
     static <Q extends Query> Q of(QueryType queryType) {
         switch (queryType) {
             case SELECT:
@@ -22,6 +14,14 @@ public interface Query {
         }
         return null;
     }
+
+    Uri getSource();
+
+    String getWhereClause();
+
+    String[] getWhereArgs();
+
+    Cursor execute(Context context);
 
     enum QueryType {
         SELECT("select"),

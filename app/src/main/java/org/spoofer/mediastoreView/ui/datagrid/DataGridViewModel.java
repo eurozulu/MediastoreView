@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import org.spoofer.mediastoreView.model.DataRow;
+import org.spoofer.mediastoreView.model.columns.ColumnSet;
 
 import java.util.List;
 
@@ -15,11 +16,11 @@ import java.util.List;
  */
 public class DataGridViewModel extends ViewModel {
 
-    private final MutableLiveData<List<String>> mTitles;
+    private final MutableLiveData<ColumnSet> mColumns;
     private final MutableLiveData<List<DataRow>> mRows;
 
     public DataGridViewModel() {
-        mTitles = new MutableLiveData<>();
+        mColumns = new MutableLiveData<>();
         mRows = new MutableLiveData<>();
     }
 
@@ -27,15 +28,15 @@ public class DataGridViewModel extends ViewModel {
         return mRows;
     }
 
-    public LiveData<List<String>> getTitles() {
-        return mTitles;
-    }
-
-    public void setTitles(List<String> titles) {
-        mTitles.setValue(titles);
-    }
-
     public void setRows(List<DataRow> rows) {
         mRows.setValue(rows);
+    }
+
+    public LiveData<ColumnSet> getColumns() {
+        return mColumns;
+    }
+
+    public void setColumns(ColumnSet columns) {
+        mColumns.setValue(columns);
     }
 }
