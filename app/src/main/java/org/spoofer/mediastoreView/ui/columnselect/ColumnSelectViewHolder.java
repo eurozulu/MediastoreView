@@ -22,6 +22,7 @@ public class ColumnSelectViewHolder extends RecyclerView.ViewHolder {
         if (checkBox != null) {
             checkBox.setVisibility(View.VISIBLE);
             checkBox.setChecked(column.isVisible());
+            checkBox.setText(column.getName());
         }
     }
 }

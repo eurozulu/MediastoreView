@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.spoofer.mediastoreView.databinding.FragmentColumnsBinding;
 import org.spoofer.mediastoreView.model.Source;
@@ -43,13 +45,11 @@ public class ColumnSelectFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.listColumns.setAdapter(columnSelectAdapter);
-
-        sourceSelectViewModel.getGroupName().observe(getViewLifecycleOwner(), binding.textColumnsGroupname::setText);
+        binding.listColumns.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         sourceSelectViewModel.getSourceName().observe(getViewLifecycleOwner(), this::setSource);
     }
 
     private void setSource(String src) {
-        binding.textColumnsSourcename.setText(src);
         Source source = Sources.from(sourceSelectViewModel.getGroupName().getValue(), src);
         if (source == null || source.getLocation() == null) {
             Log.w(LOG, String.format("Failed to set columns list with source %s", src));
