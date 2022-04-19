@@ -1,7 +1,7 @@
 package org.spoofer.mediastoreView.query;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 
@@ -44,8 +44,8 @@ public class UpdateQuery implements Query {
     }
 
     @Override
-    public Cursor execute(Context context) {
-        context.getContentResolver().update(getSource(), getValues(),
+    public Cursor execute(ContentResolver resolver) {
+        resolver.update(getSource(), getValues(),
                 getWhereClause(), getWhereArgs());
         return null;
     }

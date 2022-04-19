@@ -9,22 +9,27 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.spoofer.mediastoreView.R;
-import org.spoofer.mediastoreView.model.DataRow;
+import org.spoofer.mediastoreView.model.table.Row;
 import org.spoofer.mediastoreView.ui.titles.TitlesAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DataGridAdapter extends RecyclerView.Adapter<DataGridViewHolder> {
-
     private static final String LOG = DataGridAdapter.class.getName();
 
     private final TitlesAdapter columns;
+    private final List<Row> rowData = new ArrayList<>();
 
-    private final List<DataRow> rows = new ArrayList<>();
-
-    public DataGridAdapter(@NonNull TitlesAdapter columns) {
+    public DataGridAdapter(TitlesAdapter columns) {
         this.columns = columns;
+    }
+
+    public void setRows(@NonNull List<Row> rows) {
+        Log.d(LOG, String.format("setting datagrid adapter with %d rows", rows.size()));
+        rowData.clear();
+        rowData.addAll(rows);
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -38,32 +43,19 @@ public class DataGridAdapter extends RecyclerView.Adapter<DataGridViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull DataGridViewHolder holder, int position) {
-        holder.setRowData(columns.getColumns(), rows.get(position));
+        setCellWidths((ViewGroup) holder.itemView);
+        holder.setRowData(rowData.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return rows.size();
-    }
-
-    public void addRows(List<DataRow> newRows) {
-        Log.d(LOG, String.format("adding %d rows", newRows.size()));
-        int size = rows.size();
-        this.rows.addAll(newRows);
-        notifyItemRangeChanged(size, rows.size());
-        Log.d(LOG, "adding rows complete");
-    }
-
-    public void addRow(List<String> row) {
-        final int index = rows.size();
-        rows.add(new DataRow(row));
-        notifyItemInserted(index);
+        return rowData != null ? rowData.size() : 0;
     }
 
     public void reset() {
-        int size = rows.size();
+        int size = getItemCount();
         if (size > 0) {
-            rows.clear();
+            rowData.clear();
             notifyItemRangeRemoved(0, size);
         }
     }
@@ -76,4 +68,14 @@ public class DataGridAdapter extends RecyclerView.Adapter<DataGridViewHolder> {
         }
     }
 
+    private void setCellWidths(ViewGroup row) {
+        int index = 0;
+        for (; index < row.getChildCount(); index++) {
+            int width = 0;
+            if (index < columns.getItemCount()) {
+                width = columns.getColumnViewWidth(index);
+            }
+            ((TextView) row.getChildAt(index)).setWidth(width);
+        }
+    }
 }

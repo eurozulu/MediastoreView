@@ -1,6 +1,6 @@
 package org.spoofer.mediastoreView.query;
 
-import android.content.Context;
+import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.text.TextUtils;
@@ -74,9 +74,9 @@ public class SelectQuery implements Query {
     }
 
     @Override
-    public Cursor execute(Context context) {
+    public Cursor execute(ContentResolver resolver) {
         Log.d(LOG, String.format("executing query '%s'", this));
-        return context.getContentResolver().query(getSource(), getFields().toArray(new String[0]),
+        return resolver.query(getSource(), getFields().toArray(new String[0]),
                 getWhereClause(), getWhereArgs(), getSoryBy());
     }
 }

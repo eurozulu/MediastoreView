@@ -2,15 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_images"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_images" />
+    <group >
         <item
             android:id="@+id/nav_all_files"
             android:icon="@android:drawable/ic_menu_save"
             android:title="@string/menu_all_files" />
+        <item
+            android:id="@+id/nav_images"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_images" />
         <item
             android:id="@+id/nav_downloads"
             android:icon="@android:drawable/ic_menu_upload"

@@ -1,42 +1,41 @@
 package org.spoofer.mediastoreView.ui.datagrid;
 
+import android.content.Context;
+import android.net.Uri;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import org.spoofer.mediastoreView.model.DataRow;
-import org.spoofer.mediastoreView.model.columns.ColumnSet;
+import org.spoofer.mediastoreView.model.table.Column;
+import org.spoofer.mediastoreView.model.table.Row;
+import org.spoofer.mediastoreView.model.table.Table;
 
 import java.util.List;
 
-/**
- * {@link DataGridViewModel} represents the current Gird data set.
- * A List of Titles define the number of columns in the grid and the 'names' of each column.
- * A List of DataRow's (String List) makes up the data set in the grid.
- */
 public class DataGridViewModel extends ViewModel {
 
-    private final MutableLiveData<ColumnSet> mColumns;
-    private final MutableLiveData<List<DataRow>> mRows;
+    private final MutableLiveData<List<Column>> mColumns;
+    private final MutableLiveData<List<Row>> mRows;
 
     public DataGridViewModel() {
         mColumns = new MutableLiveData<>();
         mRows = new MutableLiveData<>();
     }
 
-    public LiveData<List<DataRow>> getRows() {
-        return mRows;
-    }
-
-    public void setRows(List<DataRow> rows) {
-        mRows.setValue(rows);
-    }
-
-    public LiveData<ColumnSet> getColumns() {
+    public LiveData<List<Column>> getColumns() {
         return mColumns;
     }
 
-    public void setColumns(ColumnSet columns) {
-        mColumns.setValue(columns);
+    public LiveData<List<Row>> getRows() {
+        return mRows;
+    }
+
+
+    public void setSource(Context context, Uri src) {
+        Table table = new Table(context);
+        table.setQuery(src);
+        mColumns.setValue(table.getColumns());
+        mRows.setValue(table.getRows());
     }
 }

@@ -1,6 +1,6 @@
 package org.spoofer.mediastoreView.query;
 
-import android.content.Context;
+import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
 
@@ -21,7 +21,7 @@ public interface Query {
 
     String[] getWhereArgs();
 
-    Cursor execute(Context context);
+    Cursor execute(ContentResolver resolver);
 
     enum QueryType {
         SELECT("select"),

@@ -1,4 +1,4 @@
-package org.spoofer.mediastoreView.ui.columns;
+package org.spoofer.mediastoreView.ui.columnselect;
 
 import android.view.View;
 import android.widget.CheckBox;
@@ -7,13 +7,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.spoofer.mediastoreView.R;
-import org.spoofer.mediastoreView.model.columns.Column;
+import org.spoofer.mediastoreView.model.table.Column;
 
-public class ColumnsViewHolder extends RecyclerView.ViewHolder {
+public class ColumnSelectViewHolder extends RecyclerView.ViewHolder {
 
     private final CheckBox checkBox;
 
-    public ColumnsViewHolder(@NonNull View itemView) {
+    public ColumnSelectViewHolder(@NonNull View itemView) {
         super(itemView);
         checkBox = (CheckBox) itemView.findViewById(R.id.columns_list_item);
     }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.datagrid.DataGridFragment">
+    tools:context=".ui.ShowDataFragment">
 
     <HorizontalScrollView
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/list_grid_titles"
+                android:id="@+id/list_show_data_titles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/light_grey"
@@ -31,7 +31,7 @@
                 tools:listitem="@layout/titles_list_item" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/list_grid_cells"
+                android:id="@+id/list_show_data_cells"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/light_grey"

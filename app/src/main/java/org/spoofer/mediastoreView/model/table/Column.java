@@ -1,4 +1,4 @@
-package org.spoofer.mediastoreView.model.columns;
+package org.spoofer.mediastoreView.model.table;
 
 import androidx.annotation.Nullable;
 

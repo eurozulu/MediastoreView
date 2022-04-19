@@ -1,4 +1,4 @@
-package org.spoofer.mediastoreView.model.columns;
+package org.spoofer.mediastoreView.model.table;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -20,58 +20,42 @@ public class PersistentColumns {
             MediaStore.MediaColumns._ID,
             MediaStore.MediaColumns.TITLE,
             MediaStore.MediaColumns.DISPLAY_NAME,
+            MediaStore.MediaColumns.ALBUM,
+            MediaStore.MediaColumns.ARTIST,
+            MediaStore.MediaColumns.ALBUM_ARTIST,
             MediaStore.MediaColumns.DATA,
             MediaStore.MediaColumns.DATE_ADDED,
             MediaStore.MediaColumns.DATE_MODIFIED,
     };
     private static final String PREFERENCE_NAME = PersistentColumns.class.getName();
-    private static final String PREFERENCE_KEY = "COLUMN_NAMES";
-    private final Context context;
+    private static final String PREFERENCE_KEY = "COLUMN_NAMES_";
+
     private final SharedPreferences preferences;
 
     public PersistentColumns(Context context) {
-        this.context = context;
         this.preferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
     }
 
-    public List<Column> getSavedColumns() {
-        return preferences.getStringSet(PREFERENCE_KEY, getDefaultColumns()).stream()
+    public List<Column> getColumns(String key) {
+        return preferences.getStringSet(PREFERENCE_KEY + key, getDefaultColumns()).stream()
                 .map(this::parseNewColumn)
                 .collect(Collectors.toList());
     }
 
-    public void putSavedColumns(List<Column> columns) {
-        Set<String> savedCols = mergeSavedColumns(columns).stream()
+    public void saveColumns(String key, List<Column> columns) {
+        Set<String> savedCols = columns.stream()
+                .filter(Column::isVisible)
                 .map(this::serialiseColumn)
                 .collect(Collectors.toSet());
 
         preferences.edit()
-                .putStringSet(PREFERENCE_KEY, savedCols)
+                .putStringSet(PREFERENCE_KEY + key, savedCols)
                 .apply();
-    }
-
-    /**
-     * replaces any column in the given list with the saved column of the same name.
-     * If a saved name exists it is replaced in the list, otherwise the given column is left in the list.
-     *
-     * @param columns the columns to replace
-     * @return the given columns with saved column matching being replaced in the list.
-     */
-    public List<Column> applySavedColumns(List<Column> columns) {
-        List<Column> savedCols = getSavedColumns();
-        return columns.stream()
-                .map(column -> {
-                    int index = savedCols.indexOf(column);
-                    return index >= 0
-                            ? savedCols.get(index)
-                            : column;
-                })
-                .collect(Collectors.toList());
     }
 
     public void clearSavedColumns() {
         preferences.edit()
-                .remove(PREFERENCE_KEY)
+                .clear()
                 .apply();
     }
 
@@ -99,28 +83,4 @@ public class PersistentColumns {
         return new HashSet<>(Arrays.asList(DEFAULT_COLUMN_NAMES));
     }
 
-    /**
-     * Merge the given Columns into the saved columns.
-     * All visible columns in given column set are added to saved.
-     * non visible columns are ignored unless already in existing saved columns, in which case they are removed.
-     *
-     * @param columns
-     * @return
-     */
-    private List<Column> mergeSavedColumns(List<Column> columns) {
-        List<Column> savedCols = getSavedColumns();
-        for (Column col : columns) {
-            int index = savedCols.indexOf(col);
-            // remove any existing
-            if (index >= 0) {
-                savedCols.remove(index);
-            }
-            if (!col.isVisible()) {
-                // no visible, ignore it
-                continue;
-            }
-            savedCols.add(col);
-        }
-        return savedCols;
-    }
 }

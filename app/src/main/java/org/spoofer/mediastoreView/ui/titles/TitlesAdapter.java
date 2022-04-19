@@ -7,33 +7,36 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.spoofer.mediastoreView.R;
-import org.spoofer.mediastoreView.model.columns.Column;
+import org.spoofer.mediastoreView.model.table.Column;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TitlesAdapter extends RecyclerView.Adapter<TitlesViewHolder> {
 
     private List<Column> columns;
-
-    public int getColumnWidth(int position) {
-        if (position < 0 || position >= getItemCount()) {
-            return 0;
-        }
-        return columns.get(position).getWidth();
-    }
-
-    public List<Column> getColumns() {
-        return columns;
-    }
+    private ViewGroup viewParent;
 
     public void setColumns(List<Column> columns) {
-        this.columns = columns;
+        this.columns = columns.stream().filter(Column::isVisible).collect(Collectors.toList());
         notifyDataSetChanged();
+    }
+
+
+    public int getColumnViewWidth(int index) {
+        if (viewParent == null || index >= viewParent.getChildCount()) {
+            return 0;
+        }
+        return viewParent.getChildAt(index).getWidth();
     }
 
     @NonNull
     @Override
     public TitlesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (this.viewParent != parent) {
+            this.viewParent = parent;
+        }
+
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         return new TitlesViewHolder(inflater.inflate(R.layout.titles_list_item, parent, false));
     }

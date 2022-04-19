@@ -1,16 +1,13 @@
 package org.spoofer.mediastoreView.ui.datagrid;
 
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.spoofer.mediastoreView.model.columns.Column;
-
-import java.util.List;
+import org.spoofer.mediastoreView.model.table.Row;
 
 /**
  * {@link DataGridViewHolder} holds a reference to a pre build 'row' of TextViews.
@@ -26,11 +23,11 @@ public class DataGridViewHolder extends RecyclerView.ViewHolder {
         rowLayout = (LinearLayout) itemView;
     }
 
-    public void setRowData(List<Column> columns, List<String> rowData) {
+    public void setRowData(Row rowData) {
         int childCount = rowLayout.getChildCount();
         for (int i = 0; i < childCount; i++) {
             TextView textView = ((TextView) rowLayout.getChildAt(i));
-            if (i >= rowData.size() || i >= columns.size()) {
+            if (i >= rowData.size()) {
                 textView.setVisibility(View.GONE);
                 continue;
             }
@@ -39,14 +36,7 @@ public class DataGridViewHolder extends RecyclerView.ViewHolder {
             String value = rowData.get(i);
             textView.setText(value);
             textView.setTooltipText(value);
-            setLayoutWidth(textView, columns.get(i).getWidth());
         }
     }
 
-
-    private void setLayoutWidth(View v, int width) {
-        ViewGroup.LayoutParams params = v.getLayoutParams();
-        params.width = width;
-        v.setLayoutParams(params);
-    }
 }

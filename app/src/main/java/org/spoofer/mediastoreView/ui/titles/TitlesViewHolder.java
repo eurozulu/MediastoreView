@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.spoofer.mediastoreView.R;
-import org.spoofer.mediastoreView.model.columns.Column;
+import org.spoofer.mediastoreView.model.table.Column;
 
 public class TitlesViewHolder extends RecyclerView.ViewHolder {
 
@@ -21,14 +21,17 @@ public class TitlesViewHolder extends RecyclerView.ViewHolder {
 
     public void setColumn(Column column) {
         if (textView != null) {
+            if (!column.isVisible()) {
+                textView.setVisibility(View.GONE);
+                return;
+            }
             String name = column.getName();
             textView.setVisibility(View.VISIBLE);
             textView.setText(name);
             textView.setTooltipText(name);
             int width = column.getWidth() > 0
                     ? column.getWidth()
-                    : (int) (textView.getPaint().measureText(name) * 1.5);
-            column.setWidth(width);
+                    : ViewGroup.LayoutParams.WRAP_CONTENT;
             setLayoutWidth(textView, width);
         }
     }
