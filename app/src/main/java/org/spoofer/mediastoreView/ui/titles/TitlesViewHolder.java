@@ -25,7 +25,7 @@ public class TitlesViewHolder extends RecyclerView.ViewHolder {
                 textView.setVisibility(View.GONE);
                 return;
             }
-            String name = column.getName();
+            String name = column.getDisplayName();
             textView.setVisibility(View.VISIBLE);
             textView.setText(name);
             textView.setTooltipText(name);

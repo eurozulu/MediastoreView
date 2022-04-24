@@ -7,6 +7,11 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="action_columns">Columns</string>
+    <string name="action_select_all">Select All</string>
+    <string name="action_deselect_all">Deselect All</string>
+    <string name="action_reset">Reset all columns</string>
+    <string name="action_apply">Apply</string>
+    <string name="action_revert">Revert</string>
 
     <string name="menu_all_files">All Files</string>
     <string name="menu_downloads">Downloads</string>
@@ -22,5 +27,7 @@
     <string name="menu_source_playlists">Playlists</string>
     <string name="menu_source_genres">Genres</string>
 
+    <string name="confirm_apply_title">Unsaved column selection</string>
+    <string name="confirm_apply">Column selection has changed.\nApply changes?</string>
     <string name="permission_failed">Failed to get permission to read MediaStore</string>
 </resources>

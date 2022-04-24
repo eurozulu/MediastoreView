@@ -52,8 +52,6 @@ public class ShowDataFragment extends Fragment {
         super.onCreate(savedInstanceState);
         super.setHasOptionsMenu(true);
 
-        new Table(getContext()).resetAllColumns();
-
         titlesAdapter = new TitlesAdapter();
         dataGridAdapter = new DataGridAdapter(titlesAdapter);
         dataGridViewModel = new ViewModelProvider(this).get(DataGridViewModel.class);

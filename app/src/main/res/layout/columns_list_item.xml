@@ -2,16 +2,26 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
+    <TextView
+        android:id="@+id/columns_list_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="COLUMN NAME"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
     <CheckBox
-        android:id="@+id/columns_list_item"
+        android:id="@+id/columns_list_item_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:button="@null"
         android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
         android:text="COLUMN NAME"
-        android:layout_marginHorizontal="10dp"
+        android:layout_marginHorizontal="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
