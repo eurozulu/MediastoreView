@@ -143,6 +143,7 @@ public class ColumnSelectFragment extends Fragment implements
         persistentColumns.saveColumns(source.getLocation().toString(), columnSelectAdapter.getColumns());
         // reset source
         setSource(source);
+        getActivity().onBackPressed();
     }
 
     private void selectAll(boolean state) {
